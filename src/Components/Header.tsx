@@ -13,7 +13,7 @@ export function Header() {
           className="bg-gray-500 text-gray-300 p-4 h-[3.375rem] w-[40rem] rounded-md border border-gray-500 placeholder:text-gray-300 focus:outline-none focus:border focus:border-purpleDark focus:text-gray-100"
         ></input>
         <button
-          className="flex items-center gap-1 bg-blueDark p-4 rounded-md ml-4 text-gray-100 w-[5.625rem] h-[3.375rem] hover:bg-blue transition-colors"
+          className="flex items-center gap-1 bg-blueDark font-bold p-4 rounded-md ml-4 text-gray-100 w-[5.625rem] h-[3.375rem] hover:bg-blue transition-colors"
           type="button"
         >
           Criar
