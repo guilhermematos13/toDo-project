@@ -5,7 +5,7 @@ export function TaskItem() {
   return (
     <div className=" mt-6 w-full bg-gray-500 p-4 rounded-lg flex items-start gap-4 justify-between">
       <Checkbox.Root className="flex items-center gap-3 group focus: outline-none">
-        <div className="h-4 w-4 rounded-2xl border border-blue flex items-center justify-center group-data-[state=checked]:bg-purpleDark group-data-[state=checked]:border-purpleDark">
+        <div className="h-4 w-4 rounded-2xl border-2 border-blue flex items-center justify-center hover:bg-blueDark hover:bg-opacity-20 group-data-[state=checked]:bg-purpleDark group-data-[state=checked]:border-purpleDark group-data-[state=checked]:hover:bg-purple">
           <Checkbox.Indicator>
             <Check size={14} className="text-gray-100" />
           </Checkbox.Indicator>
