@@ -1,4 +1,3 @@
-import { PlusCircle } from "phosphor-react";
 import Logo from "../assets/Logo.svg";
 
 export function Header() {

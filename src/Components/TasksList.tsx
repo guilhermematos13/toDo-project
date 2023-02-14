@@ -1,5 +1,4 @@
-import { ClipboardText } from "phosphor-react";
-import { WithoutTasks } from "./WithoutTasks";
+import { TaskItem } from "./TaskItem";
 
 export function TasksList() {
   return (
@@ -18,7 +17,11 @@ export function TasksList() {
           </span>
         </p>
       </div>
-      <WithoutTasks />
+      <TaskItem />
+      <TaskItem />
+      <TaskItem />
+      <TaskItem />
+      <TaskItem />
     </div>
   );
 }
