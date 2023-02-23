@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
 import { TaskProps } from "../interface/TaskProps";
 import { api } from "../services/api";
 import { TaskItem } from "./TaskItem";
@@ -8,10 +9,24 @@ export function TasksList() {
   const [list, setList] = useState<TaskProps[]>([]);
 
   useEffect(() => {
+    getList();
+  }, []);
+
+  function handleDeleteTask(id: string) {
+    api
+      .delete(`/list/${id}`)
+      .then(() => {
+        getList();
+        toast.success("Tarefa deletada!");
+      })
+      .catch(() => toast.error("Algo deu errado!"));
+  }
+
+  function getList() {
     api.get("/list").then((response) => {
       setList(response.data);
     });
-  });
+  }
 
   return (
     <div>
@@ -31,7 +46,13 @@ export function TasksList() {
       </div>
       {list.map(({ id, title, isComplete }) => {
         return (
-          <TaskItem title={title} id={id} key={id} isComplete={isComplete} />
+          <TaskItem
+            handleDeleteTask={handleDeleteTask}
+            title={title}
+            id={id}
+            key={id}
+            isComplete={isComplete}
+          />
         );
       })}
       {list.length === 0 && <WithoutTasks />}

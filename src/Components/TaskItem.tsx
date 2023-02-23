@@ -1,8 +1,10 @@
 import * as Checkbox from "@radix-ui/react-checkbox";
+import axios from "axios";
 import { Check, Trash } from "phosphor-react";
 import { TaskProps } from "../interface/TaskProps";
 
-export function TaskItem({ id, isComplete, title }: TaskProps) {
+export function TaskItem({ id, isComplete, title, handleDeleteTask }: TaskProps) {
+
   return (
     <div className=" mt-6 w-full bg-gray-500 p-4 rounded-lg flex items-start gap-4 justify-between">
       <Checkbox.Root
@@ -23,7 +25,7 @@ export function TaskItem({ id, isComplete, title }: TaskProps) {
         {title}
       </p>
       <div className="flex justify-center items-center h-6 w-6 text-gray-300 cursor-pointer hover:bg-gray-400 hover:text-red hover:rounded">
-        <Trash />
+        <Trash onClick={() => handleDeleteTask(id)}/>
       </div>
     </div>
   );
