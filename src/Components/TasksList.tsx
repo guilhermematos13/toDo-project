@@ -12,6 +12,12 @@ export function TasksList() {
     getList();
   }, []);
 
+  function handleEditTask(id: string, isComplete: boolean) {
+    api.put(`/list/${id}`, { isComplete: !isComplete }).then(() => {
+      getList();
+    });
+  }
+
   function handleDeleteTask(id: string) {
     api
       .delete(`/list/${id}`)
@@ -21,11 +27,21 @@ export function TasksList() {
       })
       .catch(() => toast.error("Algo deu errado!"));
   }
-
   function getList() {
     api.get("/list").then((response) => {
       setList(response.data);
     });
+  }
+
+  function isCompleteValidation() {
+    let counter = 0;
+
+    list.map((item) => {
+      if (item.isComplete) {
+        counter = counter + 1;
+      }
+    });
+    return counter;
   }
 
   return (
@@ -40,7 +56,7 @@ export function TasksList() {
         <p className="text-purple font-bold text-sm">
           Concluídas
           <span className="text-gray-100 rounded-xl pl-3 pt-1 pb-1 pr-3 bg-gray-400 ml-2">
-            0 de {list.length}
+            {isCompleteValidation()} de {list.length}
           </span>
         </p>
       </div>
@@ -52,6 +68,7 @@ export function TasksList() {
             id={id}
             key={id}
             isComplete={isComplete}
+            handleEditTask={handleEditTask}
           />
         );
       })}

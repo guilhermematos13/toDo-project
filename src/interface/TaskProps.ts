@@ -3,4 +3,5 @@ export interface TaskProps {
     isComplete: boolean,
     title: string;
     handleDeleteTask: (id:string) => void
+    handleEditTask: (id: string, isComplete: boolean) => void
 }
