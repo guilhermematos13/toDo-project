@@ -3,8 +3,8 @@ import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { api } from "../services/api";
 
-export function NewTask() {
-  const [taskTitle, setTaskTitle] = useState();
+export function NewTask({ getList }: any) {
+  const [taskTitle, setTaskTitle] = useState<string>();
 
   function createNewTask() {
     if (taskTitle !== undefined) {
@@ -15,6 +15,8 @@ export function NewTask() {
         })
         .then(() => {
           toast.success("Tarefa criada com sucesso");
+          getList();
+          setTaskTitle("");
         })
         .catch(() => {
           toast.error("Algo deu errado!");
@@ -27,6 +29,7 @@ export function NewTask() {
       <input
         placeholder="Adicione uma nova tarefa"
         onChange={(e: any) => setTaskTitle(e.target.value)}
+        value={taskTitle}
         className="bg-gray-500 text-gray-300 p-4 w-full h-14 rounded-md border border-gray-500 placeholder:text-gray-300 focus:outline-none focus:border focus:border-purpleDark focus:text-gray-100"
       ></input>
       <button

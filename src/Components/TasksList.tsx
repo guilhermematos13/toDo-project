@@ -1,13 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { toast } from "react-hot-toast";
-import { TaskProps } from "../interface/TaskProps";
 import { api } from "../services/api";
+import { Loading } from "./Loading";
 import { TaskItem } from "./TaskItem";
 import { WithoutTasks } from "./WithoutTasks";
 
-export function TasksList() {
-  const [list, setList] = useState<TaskProps[]>([]);
-
+export function TasksList({ getList, list, isLoading }: any) {
   useEffect(() => {
     getList();
   }, []);
@@ -27,21 +25,20 @@ export function TasksList() {
       })
       .catch(() => toast.error("Algo deu errado!"));
   }
-  function getList() {
-    api.get("/list").then((response) => {
-      setList(response.data);
-    });
-  }
 
   function isCompleteValidation() {
     let counter = 0;
 
-    list.map((item) => {
+    list.map((item: any) => {
       if (item.isComplete) {
         counter = counter + 1;
       }
     });
     return counter;
+  }
+
+  if (isLoading) {
+    return <Loading />;
   }
 
   return (
@@ -60,7 +57,7 @@ export function TasksList() {
           </span>
         </p>
       </div>
-      {list.map(({ id, title, isComplete }) => {
+      {list.map(({ id, title, isComplete }: any) => {
         return (
           <TaskItem
             handleDeleteTask={handleDeleteTask}
