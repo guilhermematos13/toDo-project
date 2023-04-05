@@ -4,8 +4,15 @@ import { api } from "../services/api";
 import { Loading } from "./Loading";
 import { TaskItem } from "./TaskItem";
 import { WithoutTasks } from "./WithoutTasks";
+import { TaskProps } from "../interface/TaskProps";
 
-export function TasksList({ getList, list, isLoading }: any) {
+interface TasksListProps {
+  getList: () => void;
+  list: TaskProps[];
+  isLoading: boolean;
+}
+
+export function TasksList({ getList, list, isLoading }: TasksListProps) {
   useEffect(() => {
     getList();
   }, []);

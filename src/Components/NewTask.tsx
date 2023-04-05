@@ -3,7 +3,11 @@ import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { api } from "../services/api";
 
-export function NewTask({ getList }: any) {
+interface NewTaskProps {
+  getList: () => void;
+}
+
+export function NewTask({ getList }: NewTaskProps) {
   const [taskTitle, setTaskTitle] = useState<string>();
 
   function createNewTask() {
