@@ -19,7 +19,7 @@ Run Project
 Generate build project
 
 ```bash
-  npm Install
+  npm build
 ```
 
 ## 🖥️ Technologies Used
